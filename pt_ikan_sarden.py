@@ -34,10 +34,22 @@ permintaan = int(input("Masukan jumlah permintaan produksi hari ini: "))
 persediaan = int(input('Masukan jumlah persediaan yang tersisa: '))
 
 # 1 FUZZIFIKASI
-pmtTurun = (permintaan_tertinggi - permintaan) / (permintaan_tertinggi - permintaan_terkecil)
+if permintaan <= permintaan_terkecil:
+	pmtTurun = 1
+elif permintaan_terkecil <= permintaan <= permintaan_tertinggi:
+	pmtTurun = (permintaan_tertinggi - permintaan) / (permintaan_tertinggi - permintaan_terkecil)
+elif permintaan >= permintaan_tertinggi:
+	pmtTurun = 0
+		
 pmtNaik = 1 - pmtTurun
 
-psdSedikit = (persediaan_terbesar - persediaan) / (persediaan_terbesar - persediaan_terkecil)
+if persediaan <= persediaan_terkecil:
+	psdSedikit = 1
+elif persediaan_terkecil <= persediaan <= persediaan_terbesar:
+	psdSedikit = (persediaan_terbesar - persediaan) / (persediaan_terbesar - persediaan_terkecil)
+elif persediaan >= persediaan_terbesar:
+	psdSedikit = 0
+		
 psdBanyak = 1 - psdSedikit
 
 # 2 INFERENSI
